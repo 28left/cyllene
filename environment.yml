@@ -1,0 +1,9 @@
+name: cyllene-env
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - numpy
+  - sympy
+  - matplotlib
+  
