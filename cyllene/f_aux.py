@@ -1,5 +1,5 @@
 import sympy as sp
-import a_mathstring as ms
+import cyllene.a_mathstring as ms
 
 # Reserve some (real-valued) symbols in Sympy
 a, b, c, d, p, q, r, s, t, w, x, y, z = sp.symbols(

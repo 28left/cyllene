@@ -4,10 +4,10 @@ import random
 from fractions import Fraction
 
 # MathString parsing library
-import a_mathstring as ms
+import cyllene.a_mathstring as ms
 
 # random function generator
-import f_random
+import cyllene.f_random
 
 
 # Reserve some (real-valued) symbols in Sympy

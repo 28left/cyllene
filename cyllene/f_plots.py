@@ -2,7 +2,7 @@ import sympy as sp
 import numpy as np
 import matplotlib.pyplot as plt
 
-import f_aux as fa
+import cyllene.f_aux as fa
 
 
 # Reserve some (real-valued) symbols in Sympy

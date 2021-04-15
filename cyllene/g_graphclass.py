@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid.axislines import SubplotZero
 import numpy as np
-import f_functionclass as f_funct
+import cyllene.f_functionclass as f_funct
 import sympy as sp
 
 

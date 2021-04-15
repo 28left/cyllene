@@ -1,5 +1,5 @@
 import sympy as sp
-import f_aux
+import cyllene.f_aux as fa
 
 # Reserve some (real-valued) symbols in Sympy
 a, b, c, d, p, q, r, s, t, w, x, y, z = sp.symbols(
@@ -11,7 +11,7 @@ MYLOCALS = {'a': a, 'b': b, 'c': c, 'd': d, 'p': p, 'q': q, 'r': r,
 #Riemann sum, use left value
 def LHS(func,min,max,n):
 
-    func = f_aux.set_variable_x(func)
+    func = fa.set_variable_x(func)
     h = (max - min)/(n+0.0)
     tmp = min
     sum = 0
@@ -24,7 +24,7 @@ def LHS(func,min,max,n):
 #Riemann sum, use right value
 def RHS(func,min,max,n):
 
-    func = f_aux.set_variable_x(func)
+    func = fa.set_variable_x(func)
     h = (max - min)/(n+0.0)
     tmp = min
     sum = 0

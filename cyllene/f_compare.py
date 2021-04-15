@@ -1,6 +1,6 @@
 import sympy as sp
 
-import f_aux
+import cyllene.f_aux as fa
 
 
 def compare_functions(func_1, func_2, mode="full"):
@@ -9,8 +9,8 @@ def compare_functions(func_1, func_2, mode="full"):
     """
     
     # get variables
-    var_1 = f_aux.get_variables(func_1)
-    var_2 = f_aux.get_variables(func_2)
+    var_1 = fa.get_variables(func_1)
+    var_2 = fa.get_variables(func_2)
 
     # if the functions have different number of free symbols, stop right away
     if len(var_1) != len(var_2):

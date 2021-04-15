@@ -1,0 +1,20 @@
+Metadata-Version: 2.1
+Name: cyllene
+Version: 0.2
+Summary: Python package to create calculus activties with Python in Jupyter notebooks
+Home-page: https://github.com/28left/calculuswithjupyter
+Author: Jan Reimann
+Author-email: jan.reimann@psu.edu
+License: BSD 3-Clause License
+Project-URL: Bug Tracker, https://github.com/28left/calculuswithjupyter/issues
+Description: README.md
+Keywords: calculus,sympy
+Platform: UNKNOWN
+Classifier: Framework :: Jupyter
+Classifier: Intended Audience :: Education
+Classifier: License :: Free for non-commercial use
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Education
+Requires-Python: >=3.5
+Description-Content-Type: text/markdown

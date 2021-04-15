@@ -2,13 +2,12 @@ import sympy as sp
 import random
 
 # aux parsing libraries
-import a_mathstring as ms
-import a_listform
+import cyllene.a_mathstring as ms
+import cyllene.a_listform as lf
 
 # import other modules
-import f_aux
-import f_define
-import f_random
+import cyllene.f_aux as fa
+import cyllene.f_define as fd
 
 
 # Reserve some (real-valued) symbols in Sympy
@@ -32,7 +31,7 @@ class Function:
 
     def __init__(self, expr):
 
-        [new_expr, self.issues] = f_define.define_expression(expr)
+        [new_expr, self.issues] = fd.define_expression(expr)
         
         if new_expr != None:
             # input ok
@@ -45,20 +44,20 @@ class Function:
         # Initialize all basic function attributes
         self.sym_form = new_expr
         self.str_form = str(new_expr).replace('**', '^')
-        self.list_form = a_listform.string_to_list(self.str_form)
+        self.list_form = lf.string_to_list(self.str_form)
         self.tex_form = sp.latex(self.sym_form)
         # self.graph_form = plt.figure()
         self.table_form = []
 
         # initialize further attributes of a function
-        self.variables = f_aux.get_variables(self.sym_form)
+        self.variables = fa.get_variables(self.sym_form)
 
         # get the domain
         """
         get_domain method from sympy does not seem stable currently
         (as of Nov 15, 2020) -- disabled for now
         """
-        # self.domain = f_aux.get_domain(self.sym_form)
+        # self.domain = fa.get_domain(self.sym_form)
 
 
 
@@ -293,3 +292,6 @@ class Function:
     def scale_y(self,a):
         expr = a * self.sym_form
         return Function(expr)
+    
+    def __eq__(self, other):
+        pass
