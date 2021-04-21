@@ -197,7 +197,7 @@ class ExpressionProblem(BaseProblem):
                 if type(self.expression[i] == str):
                     display(Markdown("**("+str(i+1)+")** <br><br>"+self.expression[i]))
                 else:
-                    display(Math("**("+str(i+1)+")** <br><br>" + latex(self.expression[i])))
+                    display(Math("**("+str(i+1)+")** \quad" + latex(self.expression[i])))
 
                 
 
