@@ -73,6 +73,7 @@ class BaseProblem():
                  statement, 
                  type,
                  num_inputs=1,
+                 input_widgets=False
                  regen=False
                 ):
 
@@ -80,6 +81,7 @@ class BaseProblem():
         self.statement = statement
         self.type = type
         self.num_inputs = num_inputs
+        self.input_widgets = input_widgets
         self.regen = regen
         self.status = 'undecided'
         self.check = []
