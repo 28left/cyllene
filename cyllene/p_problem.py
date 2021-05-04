@@ -126,6 +126,7 @@ class ExpressionProblem(BaseProblem):
                  answer_type, 
                  correct_answer,
                  eval_mode='full',
+                 input_widget=False,
                  regen=False
                 ):
 
