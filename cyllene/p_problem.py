@@ -131,7 +131,7 @@ class ExpressionProblem(BaseProblem):
                 ):
 
         # call the parent constructor 
-        super().__init__(name, statement, 'expression', num_inputs, regen)
+        super().__init__(name, statement, 'expression', num_inputs, input_widget, regen)
 
         if type(expression) != list:
             expression = [expression]
@@ -203,9 +203,14 @@ class ExpressionProblem(BaseProblem):
                     display(Math("**("+str(i+1)+")** \quad" + latex(self.expression[i])))
 
                 
-
-        # instructions 
-        display(Markdown("*Enter the answer(s) in the cell below.*"))
+        if self.input_widget:
+            # if input_widget flag is set, create text widget and button
+            print('create widget')
+        else:
+            #if not, display instructions
+            display(Markdown("*Enter the answer(s) in the cell below.*"))
+        
+        
 
     # def show_result(self):
     #     jpr.show_result(self.current_answer, self.check)
