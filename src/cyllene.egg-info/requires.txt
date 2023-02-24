@@ -1,5 +1,5 @@
 text2qti>=0.5.0
-ipython>=8.4.0
+ipython
 ipywidgets>=8.0.1
 sympy>=1.10.1
 pyparsing>=3.0.9
