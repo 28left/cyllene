@@ -28,9 +28,9 @@ License: MIT License
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Programming Language :: Python
 Classifier: Programming Language :: Python :: 3
-Requires-Python: >=3.7
+Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
-# Cyllene
-Tools to create math activities with Python for use in Jupyter notebooks
+# mathwithjupyter
+Teaching math (and more) with Jupyter notebooks

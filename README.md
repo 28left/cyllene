@@ -1,2 +1,2 @@
-# Cyllene
-Tools to create math activities with Python for use in Jupyter notebooks
+# mathwithjupyter
+Teaching math (and more) with Jupyter notebooks
