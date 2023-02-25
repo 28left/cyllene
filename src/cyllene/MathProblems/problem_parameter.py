@@ -58,7 +58,7 @@ class ParameterProblem(Problem):
             for key in self.parameters:
 
                 value = instantiate_expression(
-                    self.parameters[key], external_parameters | self.value_dict)
+                    self.parameters[key], dict(external_parameters, **self.value_dict))
 
                 # if instantiation went ok, add value to dictionary
                 if value == None:
@@ -67,15 +67,15 @@ class ParameterProblem(Problem):
                     self.value_dict[key] = value
 
         self.instantiated_dict["statement"] = substitute_parameter_string(
-            self.statement, **(external_parameters | self.value_dict)
+            self.statement, **(dict(external_parameters, **self.value_dict))
         )
 
         self.instantiated_dict["answer"] = substitute_parameter_string(
-            self.answer, **(external_parameters | self.value_dict)
+            self.answer, **(dict(external_parameters, **self.value_dict))
         )
 
         self.instantiated_dict["solution"] = substitute_parameter_string(
-            self.solution, **(external_parameters | self.value_dict)
+            self.solution, **(dict(external_parameters, **self.value_dict))
         )
 
     def get_problem(self, externals={}):
@@ -88,10 +88,9 @@ class ParameterProblem(Problem):
         externals -- dictionary to be used for parameter evaluation (default {})
         """
         self.instantiate_problem(externals)
-        return Problem(self.instantiated_dict |
-                       {"title": self.title,
-                        "tags": self.tags,
-                        "problem_id": self.problem_id})
+        return Problem(dict(self.instantiated_dict, **{"title": self.title,
+                                                       "tags": self.tags,
+                                                       "problem_id": self.problem_id}))
 
     def get_list_dict(self, num_problems: int, externals={}, duplicate_ok=False):
         """
@@ -147,7 +146,6 @@ class ExpressionParameterProblem(ExpressionProblem, ParameterProblem):
         externals -- dictionary to be used for parameter evaluation (default {})
         """
         self.instantiate_problem(externals)
-        return ExpressionProblem(self.instantiated_dict |
-                                 {"title": self.title,
-                                  "tags": self.tags,
-                                  "problem_id": self.problem_id})
+        return ExpressionProblem(dict(self.instantiated_dict, **{"title": self.title,
+                                                                 "tags": self.tags,
+                                                                 "problem_id": self.problem_id}))

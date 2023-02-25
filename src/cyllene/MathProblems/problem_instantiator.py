@@ -42,10 +42,11 @@ def instantiate_expression(expr, instantiation_dictionary):
 
     # Uncomment for debugging
     # print("Trying to instantiate: ", expr)
+    mylocals = dict(instantiation_dictionary, **FUNCTION_DICT)
+    mylocals = dict(mylocals, **__builtins__)
 
     try:
-        value = sympify(expr, locals=instantiation_dictionary |
-                        FUNCTION_DICT | __builtins__)
+        value = sympify(expr, locals=mylocals)
 
     except Exception as e:
         print("Cannot instantiate expression: ", expr)

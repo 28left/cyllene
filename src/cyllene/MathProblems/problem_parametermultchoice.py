@@ -24,7 +24,7 @@ class MultipleChoiceParameterProblem(MultipleChoice, ParameterProblem):
 
         if externals:
             # update users vars
-            self.user_vars |= externals
+            self.user_vars.update(externals)
 
         super().instantiate_problem(self.user_vars)
 
@@ -33,11 +33,11 @@ class MultipleChoiceParameterProblem(MultipleChoice, ParameterProblem):
             if isinstance(choice, str):
                 # if answer is a string, try to substitute parameters
                 self.instantiated_dict["choices"] += [substitute_parameter_string(
-                    choice, **(self.user_vars | self.value_dict))]
+                    choice, **(dict(self.user_vars, **self.value_dict)))]
             else:
                 # otherwise try to instantiate value
                 self.instantiated_dict["choices"] += [instantiate_expression(
-                    choice, self.user_vars | self.value_dict)]
+                    choice, dict(self.user_vars, **self.value_dict))]
 
     # def get_instantiated_dict(self):
     #     """return a dictionary just with the instantiated entries"""
@@ -62,10 +62,9 @@ class MultipleChoiceParameterProblem(MultipleChoice, ParameterProblem):
         external_parameters -- dictionary to be used for parameter evaluation (default {})        
         """
         self.instantiate_problem(externals)
-        return MultipleChoice(self.instantiated_dict |
-                              {"title": self.title,
-                               "tags": self.tags,
-                               "problem_id": self.problem_id})
+        return MultipleChoice(dict(self.instantiated_dict, **{"title": self.title,
+                                                              "tags": self.tags,
+                                                              "problem_id": self.problem_id}))
 
     # def get_list(self, num_problems: int, externals={}, duplicate_ok=False):
     #     """return a list of num_problems many instantiated problems"""
