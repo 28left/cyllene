@@ -71,8 +71,8 @@ class MultipleChoiceParameterWidget(ParameterProblemWidget, MultipleChoiceWidget
             display(Markdown(self.problem.statement))
 
             for i in range(self.problem.num_choices):
-                display(widgets.HTMLMathL(markdown.markdown(
-                    '**(' + str(i+1) + ')**  &nbsp;&nbsp;  ' + self.problem.choices[self.indices[i]])))
+                display(widgets.HTMLMath(
+                    value='<b>( ' + str(i+1) + ')</b>  &nbsp;&nbsp;  ' + self.problem.choices[self.indices[i]] + "&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;"))
 
     def new_button_clicked(self, bt):
 
