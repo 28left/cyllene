@@ -1,5 +1,7 @@
 from IPython.display import display, Markdown, clear_output
 import ipywidgets as widgets
+import markdown
+
 from ..MathProblems.problem_parameter import ParameterProblem
 
 from .widgets_problem_basic import ProblemWidget, MultipleChoiceWidget
@@ -69,8 +71,8 @@ class MultipleChoiceParameterWidget(ParameterProblemWidget, MultipleChoiceWidget
             display(Markdown(self.problem.statement))
 
             for i in range(self.problem.num_choices):
-                display(Markdown('**(' + str(i+1) + ')**  &nbsp;&nbsp;  ' +
-                                 self.problem.choices[self.indices[i]]))
+                display(widgets.HTMLMathL(markdown.markdown(
+                    '**(' + str(i+1) + ')**  &nbsp;&nbsp;  ' + self.problem.choices[self.indices[i]])))
 
     def new_button_clicked(self, bt):
 
