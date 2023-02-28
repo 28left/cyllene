@@ -68,7 +68,7 @@ class MultipleChoiceParameterWidget(ParameterProblemWidget, MultipleChoiceWidget
 
         with self.problem_area:
             clear_output()
-            display(Markdown(self.problem.statement))
+            display(widgets.HTMLMath(markdown.markdown(self.problem.statement)))
 
             for i in range(self.problem.num_choices):
                 display(widgets.HTMLMath(
