@@ -88,8 +88,8 @@ class MultipleChoiceWidget(ProblemWidget):
         with self.choices:
             clear_output()
             for i in range(self.problem.num_choices):
-                display(Markdown('**(' + str(i+1) + ')**  &nbsp;&nbsp;  ' +
-                        self.problem.choices[self.indices[i]]))
+                display(widgets.HTMLMathL(markdown.markdown(
+                    '**(' + str(i+1) + ')**  &nbsp;&nbsp;  ' + self.problem.choices[self.indices[i]])))
 
         display(widgets.VBox([self.choices, widgets.HBox(
             self.choice_buttons), self.feedback]))

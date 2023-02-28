@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "cyllene"
-version = "0.4.1"
+version = "0.4.2"
 description = "IPython package for math problem authoring"
 readme = "README.md"
 authors = [{ name = "Jan Reimann", email = "jan.reimann@psu.edu" }]
@@ -20,6 +20,7 @@ dependencies = [
     "ipywidgets >= 8.0.1",
     "sympy >= 1.10.1",
     "pyparsing >= 3.0.9",
-    "ipyvuetify >= 1.8.2"
+    "ipyvuetify >= 1.8.2",
+    "markdown >= 3.4.1"
 ]
 requires-python = ">=3.7"
