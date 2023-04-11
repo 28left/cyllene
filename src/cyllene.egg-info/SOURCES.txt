@@ -19,6 +19,7 @@ src/cyllene/MathFunctions/math_string.py
 src/cyllene/MathFunctions/math_table.py
 src/cyllene/MathProblems/problem_aux.py
 src/cyllene/MathProblems/problem_basic.py
+src/cyllene/MathProblems/problem_handler.py
 src/cyllene/MathProblems/problem_instantiator.py
 src/cyllene/MathProblems/problem_parameter.py
 src/cyllene/MathProblems/problem_parametermultchoice.py
@@ -36,6 +37,7 @@ src/cyllene/user/problem_stack.py
 src/cyllene/widgets/ipyvuetify_multiplechoice.py
 src/cyllene/widgets/vue_problem_basic.py
 src/cyllene/widgets/vue_problem_parameter.py
+src/cyllene/widgets/widget_viewer.py
 src/cyllene/widgets/widgets_aux.py
 src/cyllene/widgets/widgets_problem_basic.py
 src/cyllene/widgets/widgets_problem_param.py

@@ -57,6 +57,10 @@ class Problem:
 
         return self.answer == answer_string
 
+    @property
+    def has_solution(self):
+        return bool(self.solution)
+
 
 class MultipleChoice(Problem):
 
@@ -82,6 +86,9 @@ class MultipleChoice(Problem):
         if not isinstance(self.choices, list):
             self.choices = [self.choices]
 
+        # shuffle answers and store them in a separate list
+        self.shuffle_answers()
+
     @property
     def num_choices(self):
         return len(self.choices)
@@ -97,10 +104,15 @@ class MultipleChoice(Problem):
         if len(self.choices) > 0:
             self.answer = str(self.choices[0])
 
-    def shuffle_choices(self):
+    # def shuffle_choices(self):
 
-        shuffled_choices = self.choices
-        return random.shuffle(shuffled_choices)
+    #     shuffled_choices = self.choices
+    #     return random.shuffle(shuffled_choices)
+
+    def shuffle_answers(self):
+        self.indices = [i for i in range(self.num_choices)]
+        random.shuffle(self.indices)
+        self.correct = self.indices.index(0)
 
 
 class ExpressionProblem(Problem):

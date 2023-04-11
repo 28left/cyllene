@@ -14,7 +14,7 @@ COLORS = ['primary', 'success', 'info', 'warning', 'danger']
 
 class ProblemWidget:
     """
-    Show a basic widget displaying title and statement
+    Show a basic widget displaying title, statement, and solution
     """
 
     def __init__(self, problem: Problem):
@@ -43,7 +43,8 @@ class ProblemWidget:
             self.statement, self.problem.statement)
 
         display(widgets.VBox([self.title, self.statement]))
-        display(self.solution)
+        if self.has_solution:
+            display(self.solution)
 
 
 class MultipleChoiceWidget(ProblemWidget):
