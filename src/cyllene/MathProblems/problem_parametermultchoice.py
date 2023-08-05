@@ -12,7 +12,7 @@ class MultipleChoiceParameterProblem(MultipleChoice, ParameterProblem):
         super(ParameterProblem, self).set_core_attributes()
 
         self.keys = ["statement", "answer", "choices",
-                     "problem_id", "solution",
+                     "problem_id", "solution", "solution_title",
                      "tags", "title", "parameters"]
 
         if isinstance(my_dict, dict) and my_dict != {}:
@@ -59,12 +59,13 @@ class MultipleChoiceParameterProblem(MultipleChoice, ParameterProblem):
         Returns: Problem
 
         Keyword arguments:
-        external_parameters -- dictionary to be used for parameter evaluation (default {})        
+        external_parameters -- dictionary to be used for parameter evaluation (default {})
         """
         self.instantiate_problem(externals)
         return MultipleChoice(dict(self.instantiated_dict, **{"title": self.title,
                                                               "tags": self.tags,
-                                                              "problem_id": self.problem_id}))
+                                                              "problem_id": self.problem_id,
+                                                              "solution_title": self.solution_title}))
 
     # def get_list(self, num_problems: int, externals={}, duplicate_ok=False):
     #     """return a list of num_problems many instantiated problems"""

@@ -1,8 +1,10 @@
 from ..ProblemParser.parser import parse
 from ..ProblemParser.parser_webassign_new import parse_webassign
 # from ..ProblemParser.parser_webassign import parse_webassign
+from ..MathProblems.problem_basic import MultipleChoice
 from ..MathProblems.problem_parametermultchoice import MultipleChoiceParameterProblem
 from ..QTI.problem_txtqti import Problems2Text
+from ..widgets.widgets_problem_basic import MultipleChoiceWidget
 from ..widgets.widgets_problem_param import MultipleChoiceParameterWidget
 import text2qti as t2q
 
@@ -23,7 +25,11 @@ def make_problem(prob_string, externals=None, webassign=False):
         init_dict = parse_webassign(prob_string)
     else:
         init_dict = parse(prob_string)
-    return MultipleChoiceParameterProblem(init_dict, externals)
+                        
+    if 'parameters' in init_dict:
+        return MultipleChoiceParameterProblem(init_dict, externals)
+    else: 
+        return MultipleChoice(init_dict)
 
 
 def make_qti(problem, num_questions: int, solution=False, externals=None):
@@ -73,6 +79,11 @@ def make_qti(problem, num_questions: int, solution=False, externals=None):
     print("QTI file save as "+file_name)
 
 
-def show_problem(problem: MultipleChoiceParameterProblem):
+def show_problem(problem):
 
-    MultipleChoiceParameterWidget(problem).show()
+    if isinstance(problem, MultipleChoiceParameterProblem):
+        MultipleChoiceParameterWidget(problem).show()
+    elif isinstance(problem, MultipleChoice):
+        MultipleChoiceWidget(problem).show()
+    else:
+        pass

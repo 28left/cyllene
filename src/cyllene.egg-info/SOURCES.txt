@@ -15,6 +15,7 @@ src/cyllene/MathFunctions/math_functionclass.py
 src/cyllene/MathFunctions/math_helpers.py
 src/cyllene/MathFunctions/math_listform.py
 src/cyllene/MathFunctions/math_randomfunction.py
+src/cyllene/MathFunctions/math_rfunction.py
 src/cyllene/MathFunctions/math_string.py
 src/cyllene/MathFunctions/math_table.py
 src/cyllene/MathProblems/problem_aux.py

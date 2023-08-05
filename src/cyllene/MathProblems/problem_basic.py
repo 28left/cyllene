@@ -23,7 +23,7 @@ class Problem:
         self.set_core_attributes()
 
         self.keys = ["statement", "answer",
-                     "problem_id", "solution", "tags", "title"]
+                     "problem_id", "solution", "solution_title", "tags", "title"]
 
         if isinstance(my_dict, dict) and dict != {}:
             self.load_dict(my_dict)
@@ -35,6 +35,7 @@ class Problem:
         self.statement = ""
         self.answer = ""
         self.solution = ""
+        self.solution_title = ""
         self.tags = []
         self.flags = {}
 
@@ -67,7 +68,7 @@ class MultipleChoice(Problem):
     def __init__(self, my_dict={}):
 
         self.keys = ["statement", "answer",
-                     "problem_id", "solution",
+                     "problem_id", "solution", "solution_title",
                      "tags", "title", "choices"]
 
         self.problem_id = ""
@@ -75,6 +76,7 @@ class MultipleChoice(Problem):
         self.statement = ""
         self.answer = ""
         self.solution = ""
+        self.solution_title = ""
         self.tags = []
         self.flags = {}
         self.choices = []

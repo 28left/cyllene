@@ -25,15 +25,20 @@ class ProblemWidget:
         self.title = widgets.Output()
         self.statement = widgets.Output()
 
-        self.has_solution = bool(self.problem.solution)
+        self.has_solution = self.problem.has_solution
+        
         self.solution_text = widgets.Output()
         with self.solution_text:
             display(widgets.HTMLMath(markdown.markdown(self.problem.solution)))
-
+        
+        self.solution_title = 'Show Solution'
+        if self.problem.solution_title != '':
+            self.solution_title = self.problem.solution_title
+            
         self.solution = widgets.Accordion(
             children=[self.solution_text])
         self.solution.selected_index = None
-        self.solution.set_title(0, 'Show Solution')
+        self.solution.set_title(0, self.solution_title)
 
     def show(self):
 
@@ -89,8 +94,9 @@ class MultipleChoiceWidget(ProblemWidget):
         with self.choices:
             clear_output()
             for i in range(self.problem.num_choices):
-                display(widgets.HTMLMathL(markdown.markdown(
-                    '**(' + str(i+1) + ')**  &nbsp;&nbsp;  ' + self.problem.choices[self.indices[i]])))
+                display(widgets.HTMLMath('<b>( ' + str(i+1) 
+                    + ' )</b>  &nbsp;&nbsp;  ' 
+                    + self.problem.choices[self.indices[i]]))
 
         display(widgets.VBox([self.choices, widgets.HBox(
             self.choice_buttons), self.feedback]))
@@ -99,10 +105,27 @@ class MultipleChoiceWidget(ProblemWidget):
             clear_output()
             display(Markdown('Please select your answer.'))
 
-        display(self.solution)
+        if self.has_solution:
+            display(self.solution)
+        
+    def update_choices(self, choices: list):
+        """
+        Update the choices widget
+
+        Parameters:
+            choices: list of new choices in original (unshuffled) order)
+        """
+        with self.choices:
+            clear_output()
+            for i in range(self.problem.num_choices):
+                display(widgets.HTMLMath(markdown.markdown(
+                    '**( ' + str(i+1) + ' )**  &nbsp;&nbsp;  ' 
+                    + choices[self.indices[i]]))
+                    )
+
 
     def on_button_clicked(self, bt):
-
+    	
         self.check_answer(bt.description[2:-2])
 
     def check_answer(self, answer):

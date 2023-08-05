@@ -29,6 +29,7 @@ class ParameterProblem(Problem):
         self.value_dict = {}
         self.instantiated_dict = {}
 
+
     def instantiate_problem(self, externals={}):
         """
         Instantiate problem statement and solution. The user can supply its own dictionary with functions and variables. The internal problem dictionary (value_dict) is used, too.
