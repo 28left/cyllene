@@ -1,4 +1,3 @@
-from IPython import get_ipython
 from ..aux.helpers import extract_dict
 
 
@@ -27,12 +26,15 @@ class ProblemStack:
             return None
 
     def update_user_funcs(self):
-        ip = get_ipython()
-        global_dict = ip.user_ns
-        uservars = ip.run_line_magic("who_ls", "")
-        self.user_funcs = extract_dict(global_dict, uservars)
+        # if ipython environment, add user vars to dictionary
+        try:
+            ip = get_ipython()
+            global_dict = ip.user_ns
+            user_vars = ip.run_line_magic("who_ls", "")
+            self.user_funcs = extract_dict(global_dict, user_vars)
+        except NameError:
+            pass
 
 
 # create problem stack
 ProbStack = ProblemStack()
-
