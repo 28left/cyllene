@@ -1,0 +1,13 @@
+.ipynb_checkpoints
+
+build/
+src/cyllene/__pycache__/
+
+*.pyc
+*.ipynb
+*.zip
+
+notebooks/*.ipynb
+notebooks/.ipynb_checkpoints/
+
+.idea/
