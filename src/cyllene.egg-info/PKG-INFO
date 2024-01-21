@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: cyllene
-Version: 0.6.1
+Version: 0.6.2
 Summary: IPython package for math problem authoring
 Author-email: Jan Reimann <jan.reimann@psu.edu>
 License: MIT License
@@ -31,6 +31,13 @@ Classifier: Programming Language :: Python :: 3
 Requires-Python: >=3.9
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Requires-Dist: text2qti>=0.5.0
+Requires-Dist: ipython>=8.4.0
+Requires-Dist: ipywidgets>=8.0.1
+Requires-Dist: sympy>=1.10.1
+Requires-Dist: pyparsing>=3.0.9
+Requires-Dist: ipyvuetify>=1.8.2
+Requires-Dist: py-asciimath>=0.3.0
 
 # mathwithjupyter
 Teaching math (and more) with Jupyter notebooks

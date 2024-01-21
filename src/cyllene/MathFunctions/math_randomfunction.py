@@ -216,7 +216,11 @@ def set_function_random(*args):
             expr = set_cos()
 
     elif function_type == 'monomial':
-        expr = set_mon(args[1])
+        if len(args) <= 1:
+            # degree is not present as arg - choose random
+            expr = set_mon(random.randint(1, 5))
+        else:
+            expr = set_mon(args[1])
 
         """
         when we want to generate a monomial,

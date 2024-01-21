@@ -5,7 +5,6 @@ from .math_define import define_expression
 
 
 class RFunction:
-
     """
     Basic class to represent a single-variable, real-valued
     function. 
@@ -48,7 +47,7 @@ class RFunction:
         # Initialize all basic function attributes with dummy values
         self.sym_form = sp.sympify('0')
         self.table = {}
-        self.variable = sp.Symbol('x', real=True)
+        self.variable = sp.Symbol(variable, real=True)
         self.lambda_form = sp.lambdify(
             self.variable, self.sym_form, modules="sympy")
         self.domain = sp.EmptySet
@@ -81,7 +80,7 @@ class RFunction:
         except ValueError:
             raise ValueError(str(variable) + " is not a valid variable")
 
-        [new_expr, self.issues] = define_expression(
+        [new_expr, _] = define_expression(
             data, mylocals, eval_mode=True
         )
 
@@ -133,3 +132,48 @@ class RFunction:
             self.status = "finite"
         except ValueError:
             raise ValueError("Invalid value list")
+
+    @property
+    def zeros(self):
+        if self.status == 'symbolic':
+            return sp.solveset(self.sym_form, self.variable, domain=sp.S.Reals)
+        elif self.status == 'finite':
+            zeros = sp.EmptySet
+            for a in self.domain:
+                if a == 0:
+                    zeros.union({a})
+            return zeros
+        else:
+            return None
+
+    @property
+    def critical_points(self):
+
+        if self.status == 'symbolic':
+            # for symbolic functions, follow usual def of critical point
+            diff = sp.diff(self.sym_form, self.variable)
+            non_def = sp.Complement(self.domain, continuous_domain(
+                diff, self.variable, sp.S.Reals))
+            diff_zeros = sp.solveset(diff, self.variable, domain=sp.S.Reals)
+
+            return sp.Union(non_def, diff_zeros)
+        elif self.status == 'finite':
+            # for finite functions, every point is a critical point
+            return self.domain
+        else:
+            return None
+
+    @property
+    def inflection_points(self):
+
+        if self.status == 'symbolic':
+            # for symbolic function, find args for potential inflection points
+            # following the usual procedure
+            diff_two = sp.diff(
+                sp.diff(self.sym_form, self.variable), self.variable)
+            non_def = sp.Complement(self.domain, continuous_domain(
+                diff_two, self.variable, sp.S.Reals))
+            diff_zeros = sp.solveset(
+                diff_two, self.variable, domain=sp.S.Reals)
+
+            return sp.Union(non_def, diff_zeros)
