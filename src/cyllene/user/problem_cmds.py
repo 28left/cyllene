@@ -25,10 +25,10 @@ def make_problem(prob_string, externals=None, webassign=False):
         init_dict = parse_webassign(prob_string)
     else:
         init_dict = parse(prob_string)
-                        
+
     if 'parameters' in init_dict:
         return MultipleChoiceParameterProblem(init_dict, externals)
-    else: 
+    else:
         return MultipleChoice(init_dict)
 
 
@@ -58,8 +58,12 @@ def make_qti(problem, num_questions: int, solution=False, externals=None):
     qti_problem.make_text_quiz(
         title=title_string, shuffle_answers=True)
 
-    # print all questions as txt (for debugging)
-    print(qti_problem.txt_quiz)
+    print("Generating " + str(num_questions) + "problems and saving as QTI")
+    if not solution:
+        print("(without solutions)")
+
+    # print all questions as txt (uncomment for debugging)
+    # print(qti_problem.txt_quiz)
 
     # load text2qti config
     config = t2q.Config()
@@ -76,7 +80,7 @@ def make_qti(problem, num_questions: int, solution=False, externals=None):
         file_name = problem.problem_id+"_nosol.zip"
 
     qti.save(file_name)
-    print("QTI file save as "+file_name)
+    print("QTI file saved as "+file_name)
 
 
 def show_problem(problem):
