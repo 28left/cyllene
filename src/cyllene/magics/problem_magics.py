@@ -47,6 +47,9 @@ def makeqti(line):
 
     ProbStack.update_user_funcs()
     p = ProbStack.get(pname)
+    if p == None:
+        print("ERROR: No problem with name " + pname + "found")
+        return
 
     make_qti(p, pnum, solution=with_solution, externals=ProbStack.user_funcs)
 
